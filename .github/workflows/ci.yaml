@@ -48,3 +48,38 @@ jobs:
         with:
           name: mlruns-artifact
           path: mlruns/
+
+  commit-artifacts:
+    runs-on: ubuntu-latest
+    needs: build-and-train
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download MLruns Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: mlruns-artifact
+          path: ./
+
+      - name: Move mlruns to root if needed
+        run: |
+          if [ -d "mlruns-artifact/mlruns" ]; then
+            rm -rf mlruns
+            mv mlruns-artifact/mlruns ./
+            rm -rf mlruns-artifact
+          fi
+
+      - name: Commit and Push Artifacts
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add mlruns/
+          if git diff-index --quiet HEAD; then
+            echo "No changes to commit."
+          else
+            git commit -m "CHORE: Update model artifacts from CI build"
+            git push
+          fi
