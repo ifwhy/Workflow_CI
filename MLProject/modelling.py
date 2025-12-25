@@ -5,11 +5,13 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 import mlflow
 from pathlib import Path
+import os
 import warnings
 warnings.filterwarnings('ignore')
 
 def train_model():
-    mlflow.set_tracking_uri(f"http://127.0.0.1:5000")
+    tracking_uri = os.environ.get("MLFLOW_TRACKING_URI", "./mlruns")
+    mlflow.set_tracking_uri(tracking_uri)
     mlflow.set_experiment("Cancer_Severity_Score_Prediction")
     mlflow.autolog()
     
