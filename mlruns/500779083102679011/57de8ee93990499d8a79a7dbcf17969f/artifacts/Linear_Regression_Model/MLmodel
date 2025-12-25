@@ -1,0 +1,49 @@
+artifact_path: Linear_Regression_Model
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.11.14
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+mlflow_version: 2.19.0
+model_size_bytes: 5193
+model_uuid: 350dacffeeec4c19bedcb1e0c5bfbd4f
+run_id: 57de8ee93990499d8a79a7dbcf17969f
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "Age", "required": true}, {"type": "long",
+    "name": "Gender", "required": true}, {"type": "long", "name": "Genetic_Risk",
+    "required": true}, {"type": "long", "name": "Air_Pollution", "required": true},
+    {"type": "long", "name": "Alcohol_Use", "required": true}, {"type": "long", "name":
+    "Smoking", "required": true}, {"type": "long", "name": "Obesity_Level", "required":
+    true}, {"type": "long", "name": "Cancer_Stage", "required": true}, {"type": "double",
+    "name": "Treatment_Cost_USD", "required": true}, {"type": "double", "name": "Survival_Years",
+    "required": true}, {"type": "long", "name": "Cancer_Type_Cervical", "required":
+    true}, {"type": "long", "name": "Cancer_Type_Colon", "required": true}, {"type":
+    "long", "name": "Cancer_Type_Leukemia", "required": true}, {"type": "long", "name":
+    "Cancer_Type_Liver", "required": true}, {"type": "long", "name": "Cancer_Type_Lung",
+    "required": true}, {"type": "long", "name": "Cancer_Type_Prostate", "required":
+    true}, {"type": "long", "name": "Cancer_Type_Skin", "required": true}, {"type":
+    "long", "name": "Country_Region_Brazil", "required": true}, {"type": "long", "name":
+    "Country_Region_Canada", "required": true}, {"type": "long", "name": "Country_Region_China",
+    "required": true}, {"type": "long", "name": "Country_Region_Germany", "required":
+    true}, {"type": "long", "name": "Country_Region_India", "required": true}, {"type":
+    "long", "name": "Country_Region_Pakistan", "required": true}, {"type": "long",
+    "name": "Country_Region_Russia", "required": true}, {"type": "long", "name": "Country_Region_UK",
+    "required": true}, {"type": "long", "name": "Country_Region_USA", "required":
+    true}]'
+  outputs: '[{"type": "double", "required": true}]'
+  params: null
+utc_time_created: '2025-12-25 16:14:09.514168'

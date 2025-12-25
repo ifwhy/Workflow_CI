@@ -1,0 +1,15 @@
+artifact_uri: /home/runner/work/Workflow_CI/Workflow_CI/mlruns/500779083102679011/57de8ee93990499d8a79a7dbcf17969f/artifacts
+end_time: 1766679251945
+entry_point_name: ''
+experiment_id: '500779083102679011'
+lifecycle_stage: active
+run_id: 57de8ee93990499d8a79a7dbcf17969f
+run_name: Linear_Regression_Model
+run_uuid: 57de8ee93990499d8a79a7dbcf17969f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766679246565
+status: 3
+tags: []
+user_id: runner

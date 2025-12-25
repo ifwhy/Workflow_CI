@@ -1,0 +1,26 @@
+digest: 09941f04
+name: dataset
+profile: '{"num_rows": 6685, "num_elements": 173810}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "Age", "required": true},
+  {"type": "long", "name": "Gender", "required": true}, {"type": "long", "name": "Genetic_Risk",
+  "required": true}, {"type": "long", "name": "Air_Pollution", "required": true},
+  {"type": "long", "name": "Alcohol_Use", "required": true}, {"type": "long", "name":
+  "Smoking", "required": true}, {"type": "long", "name": "Obesity_Level", "required":
+  true}, {"type": "long", "name": "Cancer_Stage", "required": true}, {"type": "double",
+  "name": "Treatment_Cost_USD", "required": true}, {"type": "double", "name": "Survival_Years",
+  "required": true}, {"type": "long", "name": "Cancer_Type_Cervical", "required":
+  true}, {"type": "long", "name": "Cancer_Type_Colon", "required": true}, {"type":
+  "long", "name": "Cancer_Type_Leukemia", "required": true}, {"type": "long", "name":
+  "Cancer_Type_Liver", "required": true}, {"type": "long", "name": "Cancer_Type_Lung",
+  "required": true}, {"type": "long", "name": "Cancer_Type_Prostate", "required":
+  true}, {"type": "long", "name": "Cancer_Type_Skin", "required": true}, {"type":
+  "long", "name": "Country_Region_Brazil", "required": true}, {"type": "long", "name":
+  "Country_Region_Canada", "required": true}, {"type": "long", "name": "Country_Region_China",
+  "required": true}, {"type": "long", "name": "Country_Region_Germany", "required":
+  true}, {"type": "long", "name": "Country_Region_India", "required": true}, {"type":
+  "long", "name": "Country_Region_Pakistan", "required": true}, {"type": "long", "name":
+  "Country_Region_Russia", "required": true}, {"type": "long", "name": "Country_Region_UK",
+  "required": true}, {"type": "long", "name": "Country_Region_USA", "required": true}]}'
+source: '{"tags": {"mlflow.user": "runner", "mlflow.source.name": "MLProject/modelling.py",
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "68746a5bb03115f512cc59d90428775f78304138"}}'
+source_type: code

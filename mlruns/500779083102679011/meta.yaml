@@ -1,0 +1,6 @@
+artifact_location: /home/runner/work/Workflow_CI/Workflow_CI/mlruns/500779083102679011
+creation_time: 1766679246334
+experiment_id: '500779083102679011'
+last_update_time: 1766679246334
+lifecycle_stage: active
+name: Cancer_Severity_Score_Prediction
