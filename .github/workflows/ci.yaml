@@ -87,3 +87,9 @@ jobs:
           else
             echo "Folder mlruns tidak ditemukan, tidak ada artefak untuk di-commit."
           fi
+
+      - name: Ensure mlruns is not empty (add .gitkeep if needed)
+        run: |
+          if [ -d "mlruns" ] && [ -z "$(ls -A mlruns)" ]; then
+            touch mlruns/.gitkeep
+          fi
