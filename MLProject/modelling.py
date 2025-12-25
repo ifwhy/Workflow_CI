@@ -17,7 +17,7 @@ def train_model():
     
     print("Starting Model Training Pipeline")
     
-    data_path = "./global_cancer_patients_2015_2024_preprocessing.csv"
+    data_path = "MLProject/global_cancer_patients_2015_2024_preprocessing.csv"
     df = pd.read_csv(data_path)
     print(f"Loaded data: {len(df)} rows, {len(df.columns)} columns")
     
