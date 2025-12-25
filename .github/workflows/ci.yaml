@@ -12,6 +12,7 @@ on:
 jobs:
   build-and-train:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -19,7 +20,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.13.11'
+          python-version: "3.11"
 
       - name: Set up Conda environment
         uses: conda-incubator/setup-miniconda@v3
@@ -27,20 +28,15 @@ jobs:
           environment-file: MLProject/conda.yaml
           activate-environment: mlflow-env
           auto-activate-base: false
-          python-version: '3.13.11'
+          python-version: "3.11"
 
       - name: Run modelling.py
         shell: bash -l {0}
         env:
           MLFLOW_TRACKING_URI: ./mlruns
         run: |
-          conda run -n mlflow-env python MLProject/modelling.py MLProject/global_cancer_patients_2015_2024_preprocessing.csv
-
-      - name: Upload model artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: trained-model
-          path: MLProject/MLProject/
+          conda run -n mlflow-env python MLProject/modelling.py \
+            MLProject/global_cancer_patients_2015_2024_preprocessing.csv
 
       - name: Upload MLflow runs (mlruns)
         if: always()
@@ -54,42 +50,36 @@ jobs:
     needs: build-and-train
     permissions:
       contents: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Download MLruns Artifact
+      - name: Download MLflow artifact
         uses: actions/download-artifact@v4
         with:
           name: mlruns-artifact
-          path: ./
+          path: ./mlruns
 
-      - name: Move mlruns to root if needed
-        run: |
-          if [ -d "mlruns-artifact/mlruns" ]; then
-            rm -rf mlruns
-            mv mlruns-artifact/mlruns ./
-            rm -rf mlruns-artifact
-          fi
-
-      - name: Commit and Push Artifacts
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          if [ -d "mlruns" ]; then
-            git add mlruns/
-            if git diff-index --quiet HEAD; then
-              echo "No changes to commit."
-            else
-              git commit -m "CHORE: Update model artifacts from CI build"
-              git push
-            fi
-          else
-            echo "Folder mlruns tidak ditemukan, tidak ada artefak untuk di-commit."
-          fi
-
-      - name: Ensure mlruns is not empty (add .gitkeep if needed)
+      - name: Ensure mlruns is not empty
         run: |
           if [ -d "mlruns" ] && [ -z "$(ls -A mlruns)" ]; then
             touch mlruns/.gitkeep
+          fi
+
+      - name: Commit and push mlruns
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          if [ -d "mlruns" ]; then
+            git add mlruns/
+            if git diff --cached --quiet; then
+              echo "No changes to commit."
+            else
+              git commit -m "CHORE: Update MLflow artifacts from CI"
+              git push
+            fi
+          else
+            echo "mlruns folder not found."
           fi
