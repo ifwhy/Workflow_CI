@@ -1,0 +1,40 @@
+name: ML Model CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-train:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13.11'
+
+      - name: Set up Conda environment
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          environment-file: MLProject/conda.yaml
+          activate-environment: mlflow-env
+          auto-activate-base: false
+          python-version: '3.13.11'
+
+      - name: Run modelling.py
+        run: |
+          python MLProject/modelling.py MLProject/global_cancer_patients_2015_2024_preprocessing.csv
+
+      - name: Upload model artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: trained-model
+          path: MLProject/MLProject/
