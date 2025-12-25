@@ -41,3 +41,10 @@ jobs:
         with:
           name: trained-model
           path: MLProject/MLProject/
+
+      - name: Upload MLflow runs (mlruns)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlruns-artifact
+          path: mlruns/
