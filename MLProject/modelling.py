@@ -6,6 +6,7 @@ from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 import mlflow
 from pathlib import Path
 import os
+import sys
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -17,7 +18,10 @@ def train_model():
     
     print("Starting Model Training Pipeline")
     
-    data_path = "MLProject/global_cancer_patients_2015_2024_preprocessing.csv"
+    if len(sys.argv) > 1:
+        data_path = sys.argv[1]
+    else:
+        data_path = "MLProject/global_cancer_patients_2015_2024_preprocessing.csv"
     df = pd.read_csv(data_path)
     print(f"Loaded data: {len(df)} rows, {len(df.columns)} columns")
     
