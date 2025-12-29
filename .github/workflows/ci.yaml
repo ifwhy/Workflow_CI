@@ -30,13 +30,12 @@ jobs:
           auto-activate-base: false
           python-version: "3.11"
 
-      - name: Run modelling.py
+      - name: Run MLflow Project (retrain)
         shell: bash -l {0}
         env:
           MLFLOW_TRACKING_URI: ./mlruns
         run: |
-          conda run -n mlflow-env python MLProject/modelling.py \
-            MLProject/global_cancer_patients_2015_2024_preprocessing.csv
+          mlflow run MLProject -P data_path=global_cancer_patients_2015_2024_preprocessing.csv
 
       - name: Upload MLflow runs (mlruns)
         if: always()
