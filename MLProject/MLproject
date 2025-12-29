@@ -5,6 +5,6 @@ conda_env: conda.yaml
 entry_points:
   main:
     parameters:
-      data_path: {type: str, default: global_cancer_patients_2015_2024_preprocessing.csv}
+      data_path: {type: str, default: ../global_cancer_patients_2015_2024_preprocessing.csv}
     command: >
       python modelling.py {data_path}
