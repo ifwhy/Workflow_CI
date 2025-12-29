@@ -1,0 +1,15 @@
+artifact_uri: /home/runner/work/Workflow_CI/Workflow_CI/mlruns/0/88532e6f44df4da89c05c3e4c4aaaa8c/artifacts
+end_time: 1767018601566
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 88532e6f44df4da89c05c3e4c4aaaa8c
+run_name: fortunate-moth-331
+run_uuid: 88532e6f44df4da89c05c3e4c4aaaa8c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767018562485
+status: 3
+tags: []
+user_id: runner
