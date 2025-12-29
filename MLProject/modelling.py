@@ -6,6 +6,7 @@ from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 import mlflow
 from pathlib import Path
 import os
+import traceback
 import sys
 import warnings
 warnings.filterwarnings('ignore')
@@ -30,21 +31,22 @@ def train_model():
     
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     
-    with mlflow.start_run(run_name='Linear_Regression_Model'):
-        model = LinearRegression()
-        model.fit(X_train, y_train)
-        
-        y_pred = model.predict(X_test)
-        mse = mean_squared_error(y_test, y_pred)
-        r2 = r2_score(y_test, y_pred)
-
-        mlflow.sklearn.log_model(
-            sk_model=model,
-            artifact_path="Linear_Regression_Model",
-            input_example=X_train.head()
-        )
-
-        print(f"Model trained with R2 Score: {r2} and MSE: {mse}")
+    try:
+        with mlflow.start_run(run_name='Linear_Regression_Model'):
+            model = LinearRegression()
+            model.fit(X_train, y_train)
+            y_pred = model.predict(X_test)
+            mse = mean_squared_error(y_test, y_pred)
+            r2 = r2_score(y_test, y_pred)
+            mlflow.sklearn.log_model(
+                sk_model=model,
+                artifact_path="Linear_Regression_Model",
+                input_example=X_train.head()
+            )
+            print(f"Model trained with R2 Score: {r2} and MSE: {mse}")
+    except Exception as e:
+        print("Error during MLflow run:", e)
+        traceback.print_exc()
 
 if __name__=="__main__":
     train_model()
